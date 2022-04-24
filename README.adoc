@@ -1,0 +1,42 @@
+= Demo de Consumo de API Com OAuth2
+
+== Preparando o Ambiente para Execução
+
+Para essa demo, é necessário rodar o https://www.keycloak.org/[KeyCloak]. Para isso, basta rodar o comando:
+
+[source, shell]
+----
+docker run --name keycloak -p 9090:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin quay.io/keycloak/keycloak:14.0.0
+----
+
+Após a execução, basta acessar a página em http://localhost:9090 e fazer o login com a senha e usuário `admin`. Em seguida, basta executar os seguintes passos:
+
+* Acessar o "Administration Console"
+* No canto superior esquerdo, selecionar a opção "Add Realm"
+* Criar um novo `realm` com o nome "security-api"
+* Em seguida, basta ir em "Clients" e criar um novo na opção "Create" com o nome client-id-demo
+* Depois de criar um novo `client`, nas configurações altere as seguintes opcões:
+** "Access Type" para "confidential"
+** Ligar "Service Accounts Enabled"
+** Ligar "Authorization Enabled"
+** Adicionar `http://localhost:8080` na opção "Valid Redirect URIs" (mudar a porta se for subir a aplicação "spring-security-api" em outra porta)
+** Salvar
+** Após salvar, será exibida uma nova aba "Credentials". Essa informação será usada na configuração da aplicação cliente.
+
+== Executando as Aplicações
+
+Inicialmente, pode ser executada a aplicação "spring-security-api". Para validar, basta importar a collection da raiz do projeto no `Postman`. Seguindo a ordem de execução, o resultado esperado será:
+
+* GetHelloNoCredentials: 401, Unauthorized
+* GetToken: O body deve ser alterado, alterando o client secret com a informação obtida no último passo da seção anterior. Se tudo estiver correto, o retorno aqui deverá ser um 200 e um body com o access_token. Essa informação pode ser copiada para a próxima execução.
+* GetHelloWithCredentials: O token obtido no passo anterior deve ser informado na aba `Authorization` do `Postman`, com o tipo "Bearer Token". Se tudo estiver correto, o retorno deverá ser um 200, com a mensagem "Se viu essa mensagem, você está liberado.".
+
+Em seguida, para validar o fluxo completo, vamos alterar no `application.properties` da aplicação "jersey-client-credentials", alterando o client secret com a informação obtida no último passo da seção anterior. Em seguida, a aplicação pode ser executada. Usando a mesma collection importada nos passos anteriores, vamos seguir com a execução e o resultado esperado.
+
+* GetClientHello: Se tudo estiver correto, o retorno deverá ser um 200, com a mensagem "Se viu essa mensagem, você está liberado.".
+
+Nesse caso, a própria aplicação se encarrega de gerar um token durante a requisição. Podem ser realizados testes alterando o client id ou o client secret do `application.properties` da aplicação, para verificar que o acesso não será mais autorizado.
+
+== Links Interessantes
+
+https://aaronparecki.com/oauth-2-simplified/[OAuth 2 Simplified]

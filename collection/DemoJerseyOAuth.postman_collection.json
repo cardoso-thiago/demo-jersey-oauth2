@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "9f517e1d-1408-4675-876a-c3acb65e37f1",
+		"name": "DemoJerseyOAuth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetHelloNoCredentials",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/security/hello",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"security",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "client-id-demo",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "1ac2478f-6d9c-4a69-b3ce-6688911647bc",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9090/auth/realms/security-api/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"auth",
+						"realms",
+						"security-api",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetHelloWithCredentials",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJoTmlaOWVWOTJDQUpTZ2h1S3B0OFUxTEk1RDhqZk56dmVQZUR1MDVwNTJRIn0.eyJleHAiOjE2NTA4MjY1MzgsImlhdCI6MTY1MDgyNjIzOCwianRpIjoiMmZmMTRmMTEtYTAzMC00MDM1LWJlMjAtZjlmNTI1MjYyZTFmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MDkwL2F1dGgvcmVhbG1zL3NlY3VyaXR5LWFwaSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI0MTNjNDc4My1mNDA2LTQzNjQtYmY4OS1mZTcwYWMzZTI5NjQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjbGllbnQtaWQtZGVtbyIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsImRlZmF1bHQtcm9sZXMtc2VjdXJpdHktYXBpIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiY2xpZW50LWlkLWRlbW8iOnsicm9sZXMiOlsidW1hX3Byb3RlY3Rpb24iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImNsaWVudElkIjoiY2xpZW50LWlkLWRlbW8iLCJjbGllbnRIb3N0IjoiMTcyLjE3LjAuMSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LWNsaWVudC1pZC1kZW1vIiwiY2xpZW50QWRkcmVzcyI6IjE3Mi4xNy4wLjEifQ.hdEJALqLo9HCXGVyu1UX35dBiOOZYypEzcuJ7wqdSpUEvNGbtj_fX0AXKyv2-VhqUkQfjLJ3jzXwUowkI8L5pQSUidB8dtDBc9h7mx51rGrnnmE84S_e6Lr1z312eu2VIqCz4n5-Gxt4vjwGbMPclkdP6_40pAf9KwjCylD3shuIh8uPgmenJjkaZfXLzZlKs5cb4wKS4lpYgNO1FGeUtReifKDC-FZht4uKinzW3CnOde3SChuKSwLkyr0KL5S52UogEciLjfaiCpieNWrkmsADBsxjRNZZt_DHM_TfIQgClOJyqPg18bsYJ_tMwXPRKcBogNq6L0J0ngkBGJRMww",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/security/hello",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"security",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetClientHello",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJoTmlaOWVWOTJDQUpTZ2h1S3B0OFUxTEk1RDhqZk56dmVQZUR1MDVwNTJRIn0.eyJleHAiOjE2NTA4MjY1MzgsImlhdCI6MTY1MDgyNjIzOCwianRpIjoiMmZmMTRmMTEtYTAzMC00MDM1LWJlMjAtZjlmNTI1MjYyZTFmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MDkwL2F1dGgvcmVhbG1zL3NlY3VyaXR5LWFwaSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI0MTNjNDc4My1mNDA2LTQzNjQtYmY4OS1mZTcwYWMzZTI5NjQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjbGllbnQtaWQtZGVtbyIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsImRlZmF1bHQtcm9sZXMtc2VjdXJpdHktYXBpIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiY2xpZW50LWlkLWRlbW8iOnsicm9sZXMiOlsidW1hX3Byb3RlY3Rpb24iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImNsaWVudElkIjoiY2xpZW50LWlkLWRlbW8iLCJjbGllbnRIb3N0IjoiMTcyLjE3LjAuMSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LWNsaWVudC1pZC1kZW1vIiwiY2xpZW50QWRkcmVzcyI6IjE3Mi4xNy4wLjEifQ.hdEJALqLo9HCXGVyu1UX35dBiOOZYypEzcuJ7wqdSpUEvNGbtj_fX0AXKyv2-VhqUkQfjLJ3jzXwUowkI8L5pQSUidB8dtDBc9h7mx51rGrnnmE84S_e6Lr1z312eu2VIqCz4n5-Gxt4vjwGbMPclkdP6_40pAf9KwjCylD3shuIh8uPgmenJjkaZfXLzZlKs5cb4wKS4lpYgNO1FGeUtReifKDC-FZht4uKinzW3CnOde3SChuKSwLkyr0KL5S52UogEciLjfaiCpieNWrkmsADBsxjRNZZt_DHM_TfIQgClOJyqPg18bsYJ_tMwXPRKcBogNq6L0J0ngkBGJRMww",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/hello",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"hello"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
